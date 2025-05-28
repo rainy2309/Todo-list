@@ -1,174 +1,114 @@
-/* Định dạng chung */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+    font-family: 'MS UI Gothic', sans-serif, sans-serif;
+    background-color: #f4f4f4;
+    padding: 1px;
 }
 
-body {
-    font-family: 'MS UI Gothic', sans-serif;
-    background-color: #f0f4f8;
+nav {
+    background-color: black;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    list-style-type: none;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    max-width: 100%;
+.navbar li {
+    margin: 0 15px;
 }
 
-h1 {
-    text-align: center;
-    color: #4CAF50;
-    margin-bottom: 20px;
-    font-size: 1.7rem;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #dddddd;
-    margin-bottom: 15px;
-    font-size: 1rem;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
-}
-
-input:focus {
-    border-color: #4CAF50;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
+.navbar a {
     color: white;
-    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+#app {
+    background: #fff;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: #45a049;
+#new-task {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
 }
 
-ul {
+#add-task {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#task-list {
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
 }
 
-li {
-    padding: 20px;
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    border-radius: 8px;
+#task-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #eaf7ff;
+    border-radius: 5px;
+    border: 1px solid #cceeff;
+}
+
+.task-text {
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+    font-size: 16px;
+    color: #333;
+}
+
+#calendar-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
-
-li:hover {
-    transform: translateX(5px);
-    background-color: #e1f7d5;
-}
-
-/* Thêm phong cách cho menu */
-.actions {
-    position: relative;
-}
-
-.dots-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.action-menu {
-    display: none;
-    position: absolute;
-    top: 30px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-.action-menu:hover {}
-
-.action-menu.show {
-    display: block;
-}
-
-.action-menu button {
-    width: 100%;
-    padding: 8px 15px;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 1rem;
-}
-.action-menu .editBtn{
-    background: #ffa500;
-    color:white;
-}
-.action-menu .deleteBtn{
-    background: #f44336;
-    color:white;
-}
-
-.action-menu button:hover {
-    background-color: #f1f1f1;
-}
-
-.empty-message {
-    font-size: 1.2rem;
-    text-align: center;
-    color: #888;
+    flex-wrap: wrap;
+    gap: 20px;
     margin-top: 20px;
-    display: none;
 }
 
-.editBtn {
-    background-color: #ffa500;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 4px 8px;
-    cursor: pointer;
-    margin-left: 10px;
+.month {
+    width: calc(33.333% - 20px);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
 }
 
-.editBtn:hover {
-    background-color: #ff8c00;
+.month h3 {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.deleteBtn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 4px 8px;
-    cursor: pointer;
-    margin-left: 10px;
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
 }
 
-.deleteBtn:hover {
-    background-color: #d32f2f;
+.calendar-grid .day-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.calendar-grid .day {
+    padding: 4px;
+    border-radius: 4px;
 }

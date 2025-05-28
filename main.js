@@ -1,92 +1,95 @@
 "use strict";
-var _a;
-const addButton = document.getElementById('addBtn');
-const todoInput = document.getElementById('todoInput');
-const todoList = document.getElementById('todoList');
-const emptyMessage = document.createElement('p');
-emptyMessage.classList.add('empty-message');
-emptyMessage.textContent = 'Chưa có công việc nào! Hãy thêm công việc vào danh sách.';
-(_a = document.querySelector('.container')) === null || _a === void 0 ? void 0 : _a.appendChild(emptyMessage);
-// Lấy danh sách công việc từ localStorage nếu có
-const getTodosFromLocalStorage = () => {
-    const todos = localStorage.getItem('todos');
-    return todos ? JSON.parse(todos) : [];
-};
-// Lưu danh sách công việc vào localStorage
-const saveTodosToLocalStorage = (todos) => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-};
-// Hiển thị tất cả các công việc trong danh sách
-const renderTodos = () => {
-    const todos = getTodosFromLocalStorage();
-    todoList.innerHTML = ''; // Xóa danh sách hiện tại
-    if (todos.length === 0) {
-        emptyMessage.style.display = 'block';
-    }
-    else {
-        emptyMessage.style.display = 'none';
-    }
-    todos.forEach((todoText, index) => {
+const addTaskButton = document.getElementById('add-task');
+const taskInput = document.getElementById('new-task');
+const taskList = document.getElementById('task-list');
+//TU ĐU LÍT NHA MẠY
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== '') {
         const li = document.createElement('li');
-        li.classList.add('todo-item');
-        // HTML của mỗi công việc
-        li.innerHTML = `
-            <span class="todo-text">${todoText}</span>
-            <div class="actions">
-                <button class="dots-btn">...</button>
-                <div class="action-menu">
-                    <button class="editBtn">Sửa</button>
-                    <button class="deleteBtn">Xóa</button>
-                </div>
-            </div>
-        `;
-        // Lấy các nút xóa và sửa
-        const deleteBtn = li.querySelector('.deleteBtn');
-        const editBtn = li.querySelector('.editBtn');
-        const dotsBtn = li.querySelector('.dots-btn');
-        const actionMenu = li.querySelector('.action-menu');
-        // Toggle menu khi nhấn vào dấu ba chấm
-        dotsBtn.addEventListener('click', () => {
-            actionMenu.classList.toggle('show');
-        });
-        // Xóa công việc
-        deleteBtn.addEventListener('click', () => {
-            const todos = getTodosFromLocalStorage();
-            todos.splice(index, 1); // Xóa công việc khỏi mảng
-            saveTodosToLocalStorage(todos); // Lưu lại vào localStorage
-            renderTodos(); // Cập nhật lại giao diện
-        });
-        // Sửa công việc
-        editBtn.addEventListener('click', () => {
-            todoInput.value = todoText; // Đưa công việc vào input để chỉnh sửa
-            const todos = getTodosFromLocalStorage();
-            todos.splice(index, 1); // Xóa công việc đang chỉnh sửa khỏi mảng
-            saveTodosToLocalStorage(todos); // Lưu lại vào localStorage
-            renderTodos(); // Cập nhật lại giao diện
-        });
-        // Thêm công việc vào danh sách
-        todoList.appendChild(li);
-    });
-};
-// Hàm để thêm công việc mới vào danh sách
-const addTodo = () => {
-    const todoText = todoInput.value.trim();
-    if (todoText) {
-        const todos = getTodosFromLocalStorage();
-        todos.push(todoText); // Thêm công việc vào mảng
-        saveTodosToLocalStorage(todos); // Lưu lại vào localStorage
-        todoInput.value = ''; // Xóa giá trị input sau khi thêm
-        renderTodos(); // Cập nhật lại giao diện
+        const span = document.createElement('span');
+        span.className = 'task-text';
+        span.textContent = taskText;
+        li.appendChild(span);
+        taskList.appendChild(li);
+        taskInput.value = '';
     }
-    else {
-        alert('Vui lòng nhập công việc!');
-    }
-};
-// Lắng nghe sự kiện click vào nút "Thêm"
-addButton.addEventListener('click', addTodo);
-// Lắng nghe sự kiện nhấn Enter khi nhập công việc
-todoInput.addEventListener('keypress', (e) => {
+}
+addTaskButton.addEventListener('click', addTask);
+taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        addTodo();
+        addTask();
     }
 });
+//NAVIGATION BAR NHA MAY
+const navLinks = document.querySelectorAll('.navbar a');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = e.target;
+        const sectionId = target.getAttribute('data-section');
+        if (!sectionId)
+            return;
+        const allSections = document.querySelectorAll('section');
+        allSections.forEach(section => {
+            section.style.display = 'none';
+        });
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.style.display = 'block';
+        }
+    });
+});
+//CALENDAR NHA MẠY
+const yearSelect = document.getElementById('year-select');
+const calendarContainer = document.getElementById('calendar-container');
+for (let y = 1900; y <= 2100; y++) {
+    const option = document.createElement('option');
+    option.value = y.toString();
+    option.textContent = y.toString();
+    yearSelect.appendChild(option);
+}
+const currentYear = new Date().getFullYear();
+yearSelect.value = currentYear.toString();
+generateCalendar(currentYear);
+yearSelect.addEventListener('change', () => {
+    const year = parseInt(yearSelect.value);
+    generateCalendar(year);
+});
+function generateCalendar(year) {
+    calendarContainer.innerHTML = ''; // clear
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
+    ];
+    for (let month = 0; month < 12; month++) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay(); // 0 = Sunday
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'month';
+        const title = document.createElement('h3');
+        title.textContent = monthNames[month];
+        monthDiv.appendChild(title);
+        const grid = document.createElement('div');
+        grid.className = 'calendar-grid';
+        const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        dayNames.forEach(day => {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'day-header';
+            dayDiv.textContent = day;
+            grid.appendChild(dayDiv);
+        });
+        for (let i = 0; i < firstDay; i++) {
+            const empty = document.createElement('div');
+            grid.appendChild(empty);
+        }
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'day';
+            dayDiv.textContent = day.toString();
+            grid.appendChild(dayDiv);
+        }
+        monthDiv.appendChild(grid);
+        calendarContainer.appendChild(monthDiv);
+    }
+}

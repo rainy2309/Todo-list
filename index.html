@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Todo List - TypeScript</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
-    <h1>To-Do List</h1>
-    <input type="text" id="todoInput" placeholder="Thêm công việc..." />
-    <button id="addBtn">Thêm</button>
-    <ul id="todoList"></ul>
-</div>
+
+<nav>
+    <ul class="navbar">
+        <li><a href="#" data-section="todo-section">Todo List</a></li>
+        <li><a href="#" data-section="calendar-section">Calendar</a></li>
+        <li><a href="#" data-section="clock-section">Clock</a></li>
+    </ul>
+</nav>
+
+<section id="todo-section">
+    <div id="app">
+        <h1>Todo List</h1>
+        <input type="text" id="new-task" placeholder="Add a new task..." />
+        <button id="add-task">Add</button>
+        <ul id="task-list"></ul>
+    </div>
+</section>
+
+
+<section id="calendar-section">
+    <div id="calendar">
+        <h1>CALENDAR</h1>
+        <label for="year-select">CHOOSE YEAR</label>
+        <select id="year-select"></select>
+        <div id="calendar-container"></div>
+    </div>
+</section>
+
+
+<section id="clock-section">
+    <div id="clock">
+        <h1>Clock</h1>
+    </div>
+</section>
 
 <script src="main.js"></script>
 </body>
