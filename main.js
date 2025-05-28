@@ -7,12 +7,41 @@ function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText !== '') {
         const li = document.createElement('li');
+        li.className = 'todo-item';
         const span = document.createElement('span');
         span.className = 'task-text';
         span.textContent = taskText;
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+        const dotsBtn = document.createElement('button');
+        dotsBtn.className = 'dots';
+        dotsBtn.textContent = '...';
+        const actionMenu = document.createElement('div');
+        actionMenu.className = 'action-menu';
+        const editBtn = document.createElement('button');
+        editBtn.className = 'editBtn';
+        editBtn.textContent = 'Edit';
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'deleteBtn';
+        deleteBtn.textContent = 'Delete';
+        actionMenu.appendChild(editBtn);
+        actionMenu.appendChild(deleteBtn);
+        actions.appendChild(dotsBtn);
+        actions.appendChild(actionMenu);
         li.appendChild(span);
+        li.appendChild(actions);
         taskList.appendChild(li);
         taskInput.value = '';
+        dotsBtn.addEventListener('click', () => {
+            actionMenu.classList.toggle('show');
+        });
+        deleteBtn.addEventListener('click', () => {
+            li.remove();
+        });
+        editBtn.addEventListener('click', () => {
+            taskInput.value = span.textContent || '';
+            li.remove();
+        });
     }
 }
 addTaskButton.addEventListener('click', addTask);
