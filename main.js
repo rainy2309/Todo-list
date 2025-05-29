@@ -14,7 +14,7 @@ function addTask() {
         const actions = document.createElement('div');
         actions.className = 'actions';
         const dotsBtn = document.createElement('button');
-        dotsBtn.className = 'dots';
+        dotsBtn.className = 'dots-btn';
         dotsBtn.textContent = '...';
         const actionMenu = document.createElement('div');
         actionMenu.className = 'action-menu';

@@ -61,17 +61,26 @@ nav {
 }
 
 #task-list li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #eaf7ff;
-    border-radius: 5px;
-    border: 1px solid #cceeff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    transition: background-color 0.2s;
+}
+#task-list li:hover {
+    background-color: #f8f8f8;
 }
 
 .task-text {
-    display: inline-block;
-    word-wrap: break-word;
-    white-space: normal;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 8px;
     font-size: 16px;
     color: #333;
 }
@@ -165,14 +174,14 @@ nav {
     margin-bottom: 5px;
 }
 
-/* Màu cho nút xóa */
+
 .deleteBtn {
     background-color: #f44336;
     color: white;
     border-radius: 5px;
 }
 
-/* Todo item container */
+
 .todo-item {
     display: flex;
     justify-content: space-between;
@@ -202,16 +211,40 @@ nav {
 
 
 .todo-item .dots-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #555;
-    padding: 0 5px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #999;
+        padding: 4px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .dots-btn:hover {
+        background-color: #eaeaea;
+        color: #333;
+    }
+.todo-item .dots-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
 
+.todo-item:hover .dots-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
 .todo-item .dots-btn:hover {
-    color: #f4b400;
+    color: #333333;
 }
 
 .action-menu {
