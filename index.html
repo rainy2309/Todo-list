@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8" />
-    <title>Todo List - TypeScript</title>
+    <title>Todo List </title>
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+    <nav>
+        <ul class="navbar">
+            <li><a href="#" data-section="todo-section">Todo List</a></li>
+            <li><a href="#" data-section="calendar-section">Calendar</a></li>
+            <li><a href="#" data-section="clock-section">Clock</a></li>
+        </ul>
+    </nav>
+
+    <h1>DCMM</h1>
+    <section id="todo-section">
+        <div id="app">
+            <h1>Todo List</h1>
+            <input type="text" id="new-task" placeholder="Add a new task..." />
+            <button id="add-task">Add</button>
+            <ul id="task-list"></ul>
+        </div>
+    </section>
 
 
-<nav>
-    <ul class="navbar">
-        <li><a href="#" data-section="todo-section">Todo List</a></li>
-        <li><a href="#" data-section="calendar-section">Calendar</a></li>
-        <li><a href="#" data-section="clock-section">Clock</a></li>
-    </ul>
-</nav>
-
-<section id="todo-section">
-    <div id="app">
-        <h1>Todo List</h1>
-        <input type="text" id="new-task" placeholder="Add a new task..." />
-        <button id="add-task">Add</button>
-        <ul id="task-list"></ul>
-    </div>
-</section>
+    <section id="calendar-section">
+        <div id="calendar">
+            <h1>CALENDAR</h1>
+            <label for="year-select">CHOOSE YEAR</label>
+            <select id="year-select"></select>
+            <div id="calendar-container"></div>
+        </div>
+    </section>
 
 
-<section id="calendar-section">
-    <div id="calendar">
-        <h1>CALENDAR</h1>
-        <label for="year-select">CHOOSE YEAR</label>
-        <select id="year-select"></select>
-        <div id="calendar-container"></div>
-    </div>
-</section>
+    <section id="clock-section">
+        <div id="clock">
+            <h1>Clock</h1>
+        </div>
+    </section>
 
-
-<section id="clock-section">
-    <div id="clock">
-        <h1>Clock</h1>
-    </div>
-</section>
-
-<script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
