@@ -24,8 +24,32 @@ function addTask() {
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'deleteBtn';
         deleteBtn.textContent = 'Delete';
+        const addDateBtn = document.createElement('button');
+        addDateBtn.className = 'addDateBtn';
+        addDateBtn.textContent = 'Add Date';
+        addDateBtn.addEventListener('click', () => {
+            const dateInput = document.createElement('input');
+            dateInput.type = 'date';
+            dateInput.className = 'task-date';
+            dateInput.style.marginTop = '8px';
+            dateInput.addEventListener('change', () => {
+                const dateValue = dateInput.value;
+                if (dateValue) {
+                    const dateSpan = document.createElement('span');
+                    dateSpan.className = 'date-display';
+                    dateSpan.textContent = ` ${dateValue}`;
+                    dateSpan.style.marginLeft = '10px';
+                    dateSpan.style.fontSize = '14px';
+                    dateSpan.style.color = '#666';
+                    li.appendChild(dateSpan);
+                    dateInput.remove(); // Xóa input sau khi chọn
+                }
+            });
+            li.appendChild(dateInput);
+        });
         actionMenu.appendChild(editBtn);
         actionMenu.appendChild(deleteBtn);
+        actionMenu.appendChild(addDateBtn);
         actions.appendChild(dotsBtn);
         actions.appendChild(actionMenu);
         li.appendChild(span);
