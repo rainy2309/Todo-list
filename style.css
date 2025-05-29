@@ -175,17 +175,17 @@ nav {
 /* Todo item container */
 .todo-item {
     display: flex;
-    justify-content: space-between; /* đẩy 2 phần sang 2 đầu */
+    justify-content: space-between;
     align-items: center;
     padding: 12px 15px;
-    background-color: #eaf7ff; /* màu nhẹ */
+    background-color: #eaf7ff;
     border-radius: 8px;
     margin-bottom: 10px;
     border: 1px solid #cceeff;
     position: relative;
 }
 
-/* Text task chiếm hết chỗ bên trái */
+
 .todo-item .task-text {
     flex-grow: 1;
     font-size: 16px;
@@ -193,14 +193,14 @@ nav {
     word-break: break-word;
 }
 
-/* Container dấu 3 chấm và menu */
+
 .todo-item .actions {
-    position: relative; /* để menu menu absolute theo actions */
+    position: relative;
     margin-left: 10px;
     flex-shrink: 0;
 }
 
-/* Nút dấu 3 chấm */
+
 .todo-item .dots-btn {
     background: none;
     border: none;
@@ -211,14 +211,13 @@ nav {
 }
 
 .todo-item .dots-btn:hover {
-    color: #f4b400; /* màu vàng khi hover */
+    color: #f4b400;
 }
 
-/* Menu action ẩn */
 .action-menu {
     display: none;
     position: absolute;
-    top: 30px;  /* hiện bên dưới nút */
+    top: 30px;
     right: 0;
     background-color: white;
     border: 1px solid #ddd;
@@ -228,14 +227,14 @@ nav {
     min-width: 80px;
 }
 
-/* Hiện menu khi có class show */
+
 .action-menu.show {
     display: block;
 }
 
-/* Nút sửa */
+
 .action-menu .editBtn {
-    background-color: #ffa500; /* màu vàng */
+    background-color: #ffa500;
     color: white;
     width: 100%;
     padding: 8px;
@@ -247,7 +246,7 @@ nav {
 
 /* Nút xóa */
 .action-menu .deleteBtn {
-    background-color: #f44336; /* đỏ */
+    background-color: #f44336;
     color: white;
     width: 100%;
     padding: 8px;
