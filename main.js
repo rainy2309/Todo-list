@@ -6,6 +6,14 @@ const taskList = document.getElementById('task-list');
 function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText !== '') {
+        const taskElement = document.createElement(taskText);
+        taskList.appendChild(taskElement);
+        taskInput.value = '';
+    }
+}
+function createTaskElement() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== '') {
         const li = document.createElement('li');
         li.className = 'todo-item';
         const span = document.createElement('span');
@@ -42,7 +50,7 @@ function addTask() {
                     dateSpan.style.fontSize = '14px';
                     dateSpan.style.color = '#666';
                     li.appendChild(dateSpan);
-                    dateInput.remove(); // Xóa input sau khi chọn
+                    dateInput.remove();
                 }
             });
             li.appendChild(dateInput);
@@ -68,10 +76,10 @@ function addTask() {
         });
     }
 }
-addTaskButton.addEventListener('click', addTask);
+addTaskButton.addEventListener('click', createTaskElement);
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        addTask();
+        createTaskElement();
     }
 });
 //NAVIGATION BAR NHA MAY

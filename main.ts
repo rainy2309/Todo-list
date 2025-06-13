@@ -2,7 +2,16 @@ const addTaskButton = document.getElementById('add-task') as HTMLButtonElement;
 const taskInput = document.getElementById('new-task') as HTMLInputElement;
 const taskList = document.getElementById('task-list') as HTMLUListElement;
 //TU ĐU LÍT NHA MẠY
-function addTask() {
+function addTask(   ) {
+    const taskText=taskInput.value.trim();
+    if(taskText !==''){
+        const taskElement = document.createElement(taskText);
+        taskList.appendChild(taskElement);
+        taskInput.value = '';
+    }
+}
+
+function createTaskElement() {
     const taskText: string = taskInput.value.trim();
 
     if (taskText !== '') {
@@ -51,7 +60,7 @@ function addTask() {
                     dateSpan.style.color = '#666';
 
                     li.appendChild(dateSpan);
-                    dateInput.remove(); // Xóa input sau khi chọn
+                    dateInput.remove();
                 }
             });
             li.appendChild(dateInput);
@@ -85,11 +94,11 @@ function addTask() {
 
     }
 }
-addTaskButton.addEventListener('click', addTask);
+addTaskButton.addEventListener('click', createTaskElement);
 
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        addTask();
+        createTaskElement();
     }
 });
 
