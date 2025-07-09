@@ -3,6 +3,37 @@ body {
     background-color: #f4f4f4;
     padding: 1px;
 }
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-container input {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 
 nav {
     background-color: black;

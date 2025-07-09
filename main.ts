@@ -1,8 +1,22 @@
 const addTaskButton = document.getElementById('add-task') as HTMLButtonElement;
 const taskInput = document.getElementById('new-task') as HTMLInputElement;
 const taskList = document.getElementById('task-list') as HTMLUListElement;
+// Kiểm tra nếu chưa đăng nhập thì quay lại trang login
+const currentUser = localStorage.getItem("loggedInUser");
+if (!currentUser) {
+    window.location.href = "login.html";
+}
+const logoutBtn = document.getElementById("logout-btn");
+logoutBtn?.addEventListener("click", () => {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+});
+
+
+
 //TU ĐU LÍT NHA MẠY
 function addTask() {
+
     const taskText: string = taskInput.value.trim();
 
     if (taskText !== '') {
